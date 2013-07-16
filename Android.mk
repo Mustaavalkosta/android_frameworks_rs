@@ -4,6 +4,9 @@ LOCAL_PATH:=$(call my-dir)
 rs_base_CFLAGS := -Werror -Wall -Wno-unused-parameter -Wno-unused-variable
 # For gcc 4.7, C++11 narrowing is a warning...
 rs_base_CFLAGS += -Wno-error
+# Disable link time optimization here so we may keep it enabled globally
+# and also build rs with clang.
+rs_base_CFLAGS += -fno-lto
 ifeq ($(TARGET_BUILD_PDK), true)
   rs_base_CFLAGS += -D__RS_PDK__
 endif
